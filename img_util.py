@@ -52,4 +52,4 @@ def line_img(img_in, txt_points):
 
 # 重绘
 def img_inpaint(img_in, img_gray):
-    return cv2.inpaint(img_in, img_gray, 0, cv2.INPAINT_TELEA)
+    return cv2.inpaint(img_in, img_gray, 10, cv2.INPAINT_TELEA)

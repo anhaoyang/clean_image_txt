@@ -64,7 +64,7 @@ def ssr_img(img_in):
 # 图像形态闭运算
 def do_morphologyEx(img_canny):
     k = np.ones((3, 3), np.uint8)
-    img_mo = cv2.morphologyEx(img_canny, cv2.MORPH_CLOSE, k)
+    img_mo = cv2.morphologyEx(img_canny, cv2.MORPH_DILATE, k)
     return img_mo
 
 
