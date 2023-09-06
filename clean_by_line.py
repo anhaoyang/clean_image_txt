@@ -26,11 +26,11 @@ def clean_txt_of_img(txt_points, img_in, all_mask):
 
     x_mid1, y_mi1 = midpoint(x0, y0, x3, y3)
 
-    thickness = int(math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2))
+    thickness = int(math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)*0.6)
 
     cv2.line(mask, (x_mid0, y_mid0), (x_mid1, y_mi1), 255, thickness)
 
-    img_in = img_util.img_inpaint(img_in, mask)
+    img_in = cv2.inpaint(img_in, mask, 10, cv2.INPAINT_TELEA)
 
     all_mask = np.add(all_mask, mask)
 

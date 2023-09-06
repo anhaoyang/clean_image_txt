@@ -25,13 +25,13 @@ def clean_txt_of_img(txt_points, img_in, all_mask):
     img_gray = cv2.cvtColor(img_dealing, cv2.COLOR_BGR2GRAY)
 
     # 边缘检测
-    img_canny = cv2.Canny(img_gray, threshold1=200, threshold2=150)
+    img_canny = cv2.Canny(img_gray, threshold1=0, threshold2=0)
 
     # 寻边检测
     img_contour = do_fill_contour(img_canny)
 
     # 重绘
-    img_out = cv2.inpaint(img_in, img_contour, 30, cv2.INPAINT_NS)
+    img_out = cv2.inpaint(img_in, img_contour, 20, cv2.INPAINT_NS)
 
     # 记录蒙版
     all_mask = np.add(all_mask, img_contour)

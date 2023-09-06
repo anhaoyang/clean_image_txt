@@ -17,7 +17,7 @@ def clean_txt_of_img(txt_points, img_out, all_mask):
     img_gray = cv2.cvtColor(txt_mask, cv2.COLOR_BGR2GRAY)
 
     # 返回图像
-    return img_util.img_inpaint(img_out, img_gray)
+    return cv2.inpaint(img_out, img_gray, 20, cv2.INPAINT_TELEA)
 
 
 # 按列表清除图片上的文字

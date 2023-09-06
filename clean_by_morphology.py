@@ -93,7 +93,7 @@ def clean_txt_of_img(txt_points, img_in, all_mask):
     # cv2.imshow("img_mo", img_mo)
 
     # 图像重绘
-    img_inpaint = img_util.img_inpaint(img_in, img_mo)
+    img_inpaint = cv2.inpaint(img_in, img_mo, 30, cv2.INPAINT_TELEA)
 
     # 记录mask
     all_mask = np.add(all_mask, img_mo)
