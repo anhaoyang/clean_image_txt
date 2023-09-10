@@ -86,8 +86,11 @@ def clean_txt_of_img(txt_points, img_in, all_mask):
     img_canny = cv2.Canny(img_gray, threshold1=0, threshold2=255)
     # cv2.imshow("img_canny", img_canny)
 
+    #移除边框
+    remove_img_box = img_util.remove_img_box_mask_line(img_canny, txt_points)
+
     # 形态运算
-    img_mo = do_morphologyEx(img_canny)
+    img_mo = do_morphologyEx(remove_img_box)
 
     # 展示
     # cv2.imshow("img_mo", img_mo)
@@ -96,7 +99,7 @@ def clean_txt_of_img(txt_points, img_in, all_mask):
     img_inpaint = cv2.inpaint(img_in, img_mo, 30, cv2.INPAINT_TELEA)
 
     # 记录mask
-    all_mask = np.add(all_mask, img_mo)
+    all_mask = np.add(all_mask, remove_img_box)
 
     # 返回图像
     return img_inpaint, all_mask

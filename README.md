@@ -15,3 +15,8 @@ pip install -r .\requirements.txt
 ```
 py .\main.py
 ```
+
+
+## 三、效果图
+
+![.png](assets/效果图.png)

@@ -9,7 +9,7 @@ import ocr_by_easy_ocr as ocr
 
 if __name__ == '__main__':
     # 1.图片地址
-    img_path = "5.png"
+    img_path = "1.png"
 
     # 2.读取图片内容
     txt_info_list = ocr.read_txt(img_path)
@@ -34,12 +34,18 @@ if __name__ == '__main__':
     img_morphology, mask_morphology = clean_by_morphology.clean(txt_info_list, img_morphology)
     img_morphology, mask_morphology = clean_by_morphology.clean(txt_info_list, img_morphology)
     img_morphology, mask_morphology = clean_by_morphology.clean(txt_info_list, img_morphology)
-    cv2.imshow("mask_morphology", mask_morphology)
-    img_line, mask_morphology = clean_by_line.clean(txt_info_list, img_morphology)
-    img_contours, mask_morphology = clean_by_contours.clean(txt_info_list, img_line)
     cv2.imshow("img_morphology*4", img_morphology)
+
+    img_box, mask_morphology = clean_by_box.clean(txt_info_list, img_morphology.copy())
+    cv2.imshow("+img_box", img_box)
+
+    # cv2.imshow("mask_morphology", mask_morphology)
+
+    img_line, mask_morphology = clean_by_line.clean(txt_info_list, img_morphology)
     cv2.imshow("+img_line", img_line)
-    cv2.imshow("+img_contours", img_contours)
+
+    # img_contours, mask_morphology = clean_by_contours.clean(txt_info_list, img_line)
+    # cv2.imshow("+img_contours", img_contours)
     # cv2.imshow("mask_morphology", mask_morphology)
     cv2.imshow("img_in", img_in)
 
